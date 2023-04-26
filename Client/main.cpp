@@ -120,11 +120,18 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 //  용도: 주 창의 메시지를 처리합니다.
 //
-//  WM_COMMAND  - 애플리케이션 메뉴를 처리합니다.
-//  WM_PAINT    - 주 창을 그립니다.
-//  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
+//  WM_COMMAND  - 애플리케이션 메뉴를 처리
+//  WM_PAINT    - 주 창을 그리기
+//  WM_DESTROY  - 종료 메시지를 게시하고 반환
 //
 //
+
+int g_x = 0;
+int g_y = 0;
+
+POINT g_ptObjPos = { 500, 300 };
+POINT g_ptObjScale = { 100, 100 };
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
@@ -165,7 +172,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HBRUSH hDefaultBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
 
             // 변경된 펜과 브러쉬로 사각형 그림
-            Rectangle(hdc, 10, 10, 110, 110);
+            Rectangle(hdc
+                , g_ptObjPos.x - g_ptObjScale.x / 2
+                , g_ptObjPos.y - g_ptObjScale.y / 2 
+                , g_ptObjPos.x + g_ptObjScale.x / 2
+                , g_ptObjPos.y + g_ptObjScale.y / 2);
 
             // DC의 펜과 브러쉬를 원래대로 되돌림
             SelectObject(hdc, hDefaultPen);
@@ -178,6 +189,38 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // 그리기 종료
             EndPaint(hWnd, &ps);
         }
+        break;
+    case WM_KEYDOWN:
+    {
+        switch (wParam)
+        {
+        case VK_UP:
+            g_ptObjPos.y -= 10;
+            //InvalidateRect(hWnd, nullptr, true);
+            break;
+
+        case VK_DOWN:
+            g_ptObjPos.y += 10;
+            //InvalidateRect(hWnd, nullptr, true);
+            break;
+        
+        case VK_LEFT:
+            g_ptObjPos.x -= 10;
+            //InvalidateRect(hWnd, nullptr, true);
+            break;
+
+        case VK_RIGHT:
+            g_ptObjPos.x += 10;
+            break;
+        }
+        InvalidateRect(hWnd, nullptr, true);
+    }
+        break;
+    case WM_LBUTTONDOWN:
+    {
+        g_x = LOWORD(lParam);
+        g_y = HIWORD(lParam);
+    }
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
