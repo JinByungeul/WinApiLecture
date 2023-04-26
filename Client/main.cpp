@@ -146,7 +146,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
-    case WM_PAINT:
+    case WM_PAINT: // 무효화 영역(invalidate)이 발생한 경우
         {
             PAINTSTRUCT ps;
 
@@ -156,12 +156,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             // DC의 펜은 기본펜(Black)
             // DC의 브러쉬는 기본 브러쉬(White)
 
-            // 직접 펜을 만들어서 DC에 지급
+            // 직접 펜과 브러쉬를 만들어서 DC에 적용
             HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-            HPEN hDefaultPen = (HPEN)SelectObject(hdc, hRedPen);
+            HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255));
 
+            // 기존 펜과 브러쉬 ID 값을 받아 둠
+            HPEN hDefaultPen = (HPEN)SelectObject(hdc, hRedPen);
+            HBRUSH hDefaultBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
+
+            // 변경된 펜과 브러쉬로 사각형 그림
             Rectangle(hdc, 10, 10, 110, 110);
+
+            // DC의 펜과 브러쉬를 원래대로 되돌림
+            SelectObject(hdc, hDefaultPen);
+            SelectObject(hdc, hDefaultBrush);
+
+            // 다 쓴 펜과 브러쉬 삭제 요청
+            DeleteObject(hRedPen);
+            DeleteObject(hBlueBrush);
             
+            // 그리기 종료
             EndPaint(hWnd, &ps);
         }
         break;
