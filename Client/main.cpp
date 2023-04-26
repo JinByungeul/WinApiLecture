@@ -11,20 +11,20 @@ HINSTANCE hInst;                                // 현재 인스턴스
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름
 
-// 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
+// 함수의 전방 선언
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-// SAL
+// SAL(소스코드주석언어): _In_, _In_opt_ ...
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시작 주소 */
                     , _In_opt_ HINSTANCE hPrevInstance
                     , _In_ LPWSTR lpCmdLine
                     , _In_ int nCmdShow)
 {
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
+    UNREFERENCED_PARAMETER(hPrevInstance);  // 쓰이지 않음
+    UNREFERENCED_PARAMETER(lpCmdLine);      // 쓰이지 않음
 
     // TODO: 여기에 코드를 입력합니다.
 
@@ -32,10 +32,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_CLIENT, szWindowClass, MAX_LOADSTRING);
     
-    // 윈도우 정보 등록
+    // 1. 윈도우 정보 등록
     MyRegisterClass(hInstance); 
 
-    // 윈도우 생성
+    // 2. 윈도우 생성
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -44,20 +44,24 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     // 단축키 테이블 정보 로딩
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
+    // 3. 기본 메시지 루프
+    // GetMessage
+    // 메시지 큐에서 메시지가 확인될 때까지 대기
+    // msg.message == WM_QUIT 인 경우, false 를 반환 => 프로그램 종료
     MSG msg;
 
-    // 기본 메시지 루프
-    while (GetMessage(&msg, nullptr, 0, 0)) // 메시지 큐에서 메시지 확인
+    while (GetMessage(&msg, nullptr, 0, 0)) // 프로그램의 '메시지 큐'에서 꺼내서
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키 테이블 확인
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            TranslateMessage(&msg);         // 메시지 해석
+            DispatchMessage(&msg);          // 메시지 처리: 메인 윈도우의 프로시저(WndProc) 호출
         }
     }
 
     return (int) msg.wParam;
-}
+
+}// wWinMain
 
 
 
