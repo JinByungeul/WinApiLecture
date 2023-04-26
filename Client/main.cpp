@@ -165,7 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             HDC hdc = BeginPaint(hWnd, &ps);
             // DC의 목적지는 hWnd
             // DC의 펜은 기본펜(Black)
-            // DC의 브러쉬는 기본 브러쉬(White)
+            // DC의 브러쉬는 기본 브러쉬(White) 
 
             // 직접 펜과 브러쉬를 만들어서 DC에 적용
             HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
