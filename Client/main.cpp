@@ -1,6 +1,5 @@
-﻿// Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
+﻿
+#include "pch.h"
 #include "framework.h"
 #include "Client.h"
 
@@ -25,7 +24,7 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 // 정적 (데이터 영역)
 // 1. 함수 안에
 // 2. 파일 안에
-// 3. 클래스 안에
+// 3. 클래스 안에 (초기화는 반드시 클래스 밖에서)
 // 외부 
 
 // SAL(소스코드주석언어): _In_, _In_opt_ ...
@@ -38,6 +37,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     UNREFERENCED_PARAMETER(lpCmdLine);      // 쓰이지 않음
 
     // TODO: 여기에 코드를 입력합니다.
+    //CCore* pCore = CCore::GetInstance();
+
+
+
 
 
     // 전역 문자열 초기화
@@ -52,6 +55,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     {
         return FALSE;
     }
+
+    // Core 초기화
+    if (FAILED(CCore::GetInst()->init(g_hWnd, POINT{ 1280, 768 })))
+    {
+        MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
+
+        return FALSE;
+    }
+
+
 
     // 단축키 테이블 정보 로딩
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
@@ -86,7 +99,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
             // 우리의 코드 수행 부분
             // 디자인 패턴(설계 유형)
             // 싱글톤 패턴
-
+            CCore::GetInst()->process();
 
         }
     }
