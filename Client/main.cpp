@@ -4,10 +4,13 @@
 #include "framework.h"
 #include "Client.h"
 
+#include "CCore.h"
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스
+HWND      g_hWnd;                                 // 현재 윈도우
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름
 
@@ -16,6 +19,14 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+// 변수 종류
+// 지역
+// 정적 (데이터 영역)
+// 1. 함수 안에
+// 2. 파일 안에
+// 3. 클래스 안에
+// 외부 
 
 // SAL(소스코드주석언어): _In_, _In_opt_ ...
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시작 주소 */
@@ -27,6 +38,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     UNREFERENCED_PARAMETER(lpCmdLine);      // 쓰이지 않음
 
     // TODO: 여기에 코드를 입력합니다.
+
 
     // 전역 문자열 초기화
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -45,17 +57,37 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
     // 3. 기본 메시지 루프
+    MSG msg;
+
     // GetMessage
     // 메시지 큐에서 메시지가 확인될 때까지 대기
     // msg.message == WM_QUIT 인 경우, false 를 반환 => 프로그램 종료
-    MSG msg;
 
-    while (GetMessage(&msg, nullptr, 0, 0)) // 프로그램의 '메시지 큐'에서 꺼내서
+    // PeekMessage
+    // 메시지 유무와 관계없이 반환
+    // 메시지큐에서 메시지를 확인한 경우 true, 메시지가 없는 경우 false 를 반환
+    
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키 테이블 확인
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);         // 메시지 해석
-            DispatchMessage(&msg);          // 메시지 처리: 메인 윈도우의 프로시저(WndProc) 호출
+            if (WM_QUIT == msg.message)         // 프로그램 종료
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) // 단축키 테이블 확인
+            {
+                TranslateMessage(&msg);         // 메시지 해석
+                DispatchMessage(&msg);          // 메시지 처리: 메인 윈도우의 프로시저(WndProc) 호출
+            }
+        }
+        // 메시지가 발생하지 않는 대부분의 시간
+        else
+        {
+            // 우리의 코드 수행 부분
+            // 디자인 패턴(설계 유형)
+            // 싱글톤 패턴
+
+
         }
     }
 
@@ -105,16 +137,16 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+   g_hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   if (!hWnd)
+   if (!g_hWnd)
    {
       return FALSE;
    }
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+   ShowWindow(g_hWnd, nCmdShow);
+   UpdateWindow(g_hWnd);
 
    return TRUE;
 }
@@ -279,6 +311,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         g_vecInfo.push_back(info);
         blbtnDown = false;
         InvalidateRect(hWnd, nullptr, true);
+    }
+        break;
+
+    case WM_TIMER:  // 메인 윈도우에 타이머 메시지 발생
+    {
+        int a = 0;
     }
         break;
 
