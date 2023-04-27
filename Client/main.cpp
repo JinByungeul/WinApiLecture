@@ -161,6 +161,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
 
+            // 1. 그리기 시작
             // Device Context 만들어서 ID를 반환
             HDC hdc = BeginPaint(hWnd, &ps);
             // DC의 목적지는 hWnd
@@ -190,7 +191,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             DeleteObject(hRedPen);
             DeleteObject(hBlueBrush);
             
-            // 그리기 종료
+            // 2. 그리기 종료
             EndPaint(hWnd, &ps);
         }
         break;
