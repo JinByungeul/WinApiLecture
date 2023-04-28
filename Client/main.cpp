@@ -223,45 +223,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
 
             // 1. 그리기 시작
-            // Device Context 만들어서 ID를 반환
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // DC의 목적지는 hWnd
-            // DC의 펜은 기본펜(Black)
-            // DC의 브러쉬는 기본 브러쉬(White) 
+            HDC hdc = BeginPaint(hWnd, &ps);    // Device Context (그리기)
 
-            // 직접 펜과 브러쉬를 만들어서 DC에 적용
-            HPEN hRedPen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-            HBRUSH hBlueBrush = CreateSolidBrush(RGB(0, 0, 255));
-
-            // 기존 펜과 브러쉬 ID 값을 받아 둠
-            HPEN hDefaultPen = (HPEN)SelectObject(hdc, hRedPen);
-            HBRUSH hDefaultBrush = (HBRUSH)SelectObject(hdc, hBlueBrush);
-
-            // 변경된 펜과 브러쉬로 사각형 그림
-            if (blbtnDown)
-            {
-                Rectangle(hdc
-                    , g_ptLT.x, g_ptLT.y
-                    , g_ptRB.x, g_ptRB.y);
-            }
-
-            // 추가된 사각형도 그려준다
-            for (size_t i = 0; i < g_vecInfo.size(); ++i)
-            {
-                Rectangle(hdc
-                    , g_vecInfo[i].g_ptObjPos.x - g_vecInfo[i].g_ptObjScale.x / 2
-                    , g_vecInfo[i].g_ptObjPos.y - g_vecInfo[i].g_ptObjScale.y / 2
-                    , g_vecInfo[i].g_ptObjPos.x + g_vecInfo[i].g_ptObjScale.x / 2
-                    , g_vecInfo[i].g_ptObjPos.y + g_vecInfo[i].g_ptObjScale.y / 2);
-            }
-
-            // DC의 펜과 브러쉬를 원래대로 되돌림
-            SelectObject(hdc, hDefaultPen);
-            SelectObject(hdc, hDefaultBrush);
-
-            // 다 쓴 펜과 브러쉬 삭제 요청
-            DeleteObject(hRedPen);
-            DeleteObject(hBlueBrush);
+            //Rectangle(hdc, 1180, 668, 1280, 768);
             
             // 2. 그리기 종료
             EndPaint(hWnd, &ps);
@@ -269,70 +233,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_KEYDOWN:
-    {
-        switch (wParam)
-        {
-        case VK_UP:
-            g_ptLT.y -= 10;
-            //InvalidateRect(hWnd, nullptr, true);
-            break;
 
-        case VK_DOWN:
-            g_ptLT.y += 10;
-            //InvalidateRect(hWnd, nullptr, true);
-            break;
-        
-        case VK_LEFT:
-            g_ptLT.x -= 10;
-            //InvalidateRect(hWnd, nullptr, true);
-            break;
-
-        case VK_RIGHT:
-            g_ptLT.x += 10;
-            break;
-            //InvalidateRect(hWnd, nullptr, true);
-        }
-
-    }
         break;
 
     case WM_LBUTTONDOWN:
-    {
-        g_ptLT.x = LOWORD(lParam);
-        g_ptLT.y = HIWORD(lParam);
-        blbtnDown = true;
-    }
+
         break;
 
     case WM_MOUSEMOVE:
-    {
-        g_ptRB.x = LOWORD(lParam);
-        g_ptRB.y = HIWORD(lParam);
-        InvalidateRect(hWnd, nullptr, true);
-    }
+
         break;
 
     case WM_LBUTTONUP:
-    {
-        tObjInfo info = {};
-        info.g_ptObjPos.x = (g_ptLT.x + g_ptRB.x) / 2;
-        info.g_ptObjPos.y = (g_ptLT.y + g_ptRB.y) / 2;
 
-        info.g_ptObjScale.x = abs(g_ptLT.x - g_ptRB.x);
-        info.g_ptObjScale.y = abs(g_ptLT.y - g_ptRB.y);
-
-        g_vecInfo.push_back(info);
-        blbtnDown = false;
-        InvalidateRect(hWnd, nullptr, true);
-    }
         break;
-
-    case WM_TIMER:  // 메인 윈도우에 타이머 메시지 발생
-    {
-        int a = 0;
-    }
-        break;
-
+        
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

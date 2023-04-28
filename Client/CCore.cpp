@@ -1,16 +1,25 @@
 #include "pch.h"
 #include "CCore.h"
 
-//CCore* CCore::g_pInst = nullptr;
+#include "CTimeMgr.h"
+#include "CKeyMgr.h"
+
+#include "CObject.h"
+
+
+CObject g_obj;	// 전역변수
 
 CCore::CCore()
+	: m_hWnd(0)
+	, m_ptResolution{}
+	, m_hDC(0)
 {
 
 }
 
 CCore::~CCore()
 {
-
+	ReleaseDC(m_hWnd, m_hDC);
 }
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
@@ -23,11 +32,58 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
 	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 
+	m_hDC = GetDC(m_hWnd);	// 윈도우 메시지와 관계없이 Device Context 얻기
+
+	// Manager 초기화
+	CTimeMgr::GetInst()->init();
+	CKeyMgr::GetInst()->init();
+
+
+
+	g_obj.SetPos(Vec2(m_ptResolution.x / 2, m_ptResolution.y / 2));	// 화면 중앙에 위치(초기값)
+	g_obj.SetScale(Vec2(100, 100));
+
+
 	return S_OK;	// success code
 }
 
 void CCore::process()
 {
+	// Manager Update
+	CTimeMgr::GetInst()->update();
 
+	update();
+
+	render();
+}
+
+void CCore::update()
+{
+	Vec2 vPos = g_obj.GetPos();
+
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+	{
+		vPos.x -= 200.f * CTimeMgr::GetInst()->GetfDT();
+	}
+
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+	{
+		vPos.x += 200.f * CTimeMgr::GetInst()->GetfDT();
+	}
+
+	g_obj.SetPos(vPos);
+}
+
+void CCore::render()
+{
+	// 그리기
+	Vec2 vPos = g_obj.GetPos();
+	Vec2 vScale = g_obj.GetScale();
+
+	Rectangle(m_hDC
+		, int(vPos.x - vScale.x / 2.f)
+		, int(vPos.y - vScale.y / 2.f)
+		, int(vPos.x + vScale.x / 2.f)
+		, int(vPos.y + vScale.y / 2.f));
 }
 
