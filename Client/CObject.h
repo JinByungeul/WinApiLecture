@@ -17,6 +17,5 @@ public:
 public:
 	CObject();
 	~CObject();
-
 };
 
