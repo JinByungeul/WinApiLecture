@@ -29,6 +29,18 @@
     <Filter Include="Engine\03. Manager\TimeMgr">
       <UniqueIdentifier>{b2deee95-d261-4feb-b0cb-76b16a9b5c7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\05. Scene">
+      <UniqueIdentifier>{efacbb7c-70c8-4a17-bb61-5af234441a67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\SceneMgr">
+      <UniqueIdentifier>{f49a3f00-c0bc-46de-8e74-0be179c9238a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene\Scene_Start">
+      <UniqueIdentifier>{f0b9f87d-4464-4462-a67b-7106066119c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene\Scene_Tool">
+      <UniqueIdentifier>{06122a8d-67fd-4373-98c3-6c7bd7ac1c8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -62,6 +74,15 @@
     <ClInclude Include="CTimeMgr.h">
       <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>Engine\05. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_Start.h">
+      <Filter>Engine\05. Scene\Scene_Start</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -80,9 +101,6 @@
     <ClCompile Include="CCore.cpp">
       <Filter>Engine\02. Core</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Default</Filter>
-    </ClCompile>
     <ClCompile Include="CKeyMgr.cpp">
       <Filter>Engine\03. Manager\KeyMgr</Filter>
     </ClCompile>
@@ -92,5 +110,15 @@
     <ClCompile Include="CTimeMgr.cpp">
       <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_Start.cpp">
+      <Filter>Engine\05. Scene\Scene_Start</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>

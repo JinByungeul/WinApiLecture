@@ -18,8 +18,8 @@ public:
 	void process();			// 윈도우 메시지 없을때 동작 함수
 
 private:
-	void update();
-	void render();
+	//void update();
+	//void render();
 
 public:
 	HWND GetMainHwnd() { return m_hWnd; }

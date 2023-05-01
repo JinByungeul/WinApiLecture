@@ -37,8 +37,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     UNREFERENCED_PARAMETER(lpCmdLine);      // 쓰이지 않음
 
     // TODO: 여기에 코드를 입력합니다.
-    //CCore* pCore = CCore::GetInstance();
-
 
 
 
@@ -70,8 +68,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
     // 3. 기본 메시지 루프
-    MSG msg;
-
     // GetMessage
     // 메시지 큐에서 메시지가 확인될 때까지 대기
     // msg.message == WM_QUIT 인 경우, false 를 반환 => 프로그램 종료
@@ -80,8 +76,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
     // 메시지 유무와 관계없이 반환
     // 메시지큐에서 메시지를 확인한 경우 true, 메시지가 없는 경우 false 를 반환
     
+    MSG msg;
+
     while (true)
     {
+        // 1. 윈도우 메시지가 있는 경우
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             if (WM_QUIT == msg.message)         // 프로그램 종료
@@ -93,7 +92,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
                 DispatchMessage(&msg);          // 메시지 처리: 메인 윈도우의 프로시저(WndProc) 호출
             }
         }
-        // 메시지가 발생하지 않는 대부분의 시간
+        // 2. 윈도우 메시지가 발생하지 않는 대부분의 시간
         else
         {
             // 우리의 코드 수행 부분
