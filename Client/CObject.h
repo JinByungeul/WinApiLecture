@@ -1,6 +1,6 @@
 #pragma once
 
-
+// 추상클래스
 class CObject
 {
 private:
@@ -15,8 +15,8 @@ public:
 	Vec2 GetScale() { return m_vScale; }
 
 public:
-	void update();
-	void render(HDC _dc);
+	virtual void update() = 0;			// 순수가상함수
+	virtual void render(HDC _dc) = 0;	// 순수가상함수
 
 public:
 	CObject();

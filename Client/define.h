@@ -12,8 +12,16 @@
                          type();\
                          ~type();
 
+// 프레임간 소요시간
 #define fDT CTimeMgr::GetInst()->GetfDT()
 #define DT CTimeMgr::GetInst()->GetDT()
+
+// 키 입력 조건 체크
+#define KEY_CHECK(key, state) CKeyMgr::GetInst()->GetKeyState(key) == state
+#define KEY_AWAY(key) KEY_CHECK(key, KEY_STATE::AWAY)
+#define KEY_HOLD(key) KEY_CHECK(key, KEY_STATE::HOLD)
+#define KEY_TAP(key) KEY_CHECK(key, KEY_STATE::TAP)
+#define KEY_NONE(key) KEY_CHECK(key, KEY_STATE::NONE)
 
 // Scene의 그룹
 enum class GROUP_TYPE

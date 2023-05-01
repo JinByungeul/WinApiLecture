@@ -9,7 +9,7 @@ private:
 	vector<CObject*>	m_arrObj[(UINT)GROUP_TYPE::END];	// 오브젝트를 저장 및 관리할 벡터를 그룹 갯수만큼 선언
 	wstring				m_strName;							// Scene 이름
 
-protected:
+public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _eType) { m_arrObj[(UINT)_eType].push_back(_pObj); }
 
 public:
