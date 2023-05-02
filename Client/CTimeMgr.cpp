@@ -3,9 +3,9 @@
 #include "CCore.h"
 
 CTimeMgr::CTimeMgr()
-	: m_llCurCount{}
-	, m_llPrevCount{}
-	, m_llFrequency{}
+	: m_lICurCount{}
+	, m_lIPrevCount{}
+	, m_lIFrequency{}
 	, m_dDT(0.)
 	, m_dAcc(0.)
 	, m_iCallCount(0)
@@ -21,21 +21,21 @@ CTimeMgr::~CTimeMgr()
 void CTimeMgr::init()
 {
 	// 현재 카운트
-	QueryPerformanceCounter(&m_llPrevCount);
+	QueryPerformanceCounter(&m_lIPrevCount);
 
 	// 초당 카운트 횟수
-	QueryPerformanceFrequency(&m_llFrequency);
+	QueryPerformanceFrequency(&m_lIFrequency);
 }
 
 void CTimeMgr::update()
 {
-	QueryPerformanceCounter(&m_llCurCount);
+	QueryPerformanceCounter(&m_lICurCount);
 
 	// 이전 프레임의 카운팅과 현재 프레임 카운팅 값의 차이를 구한다.
-	m_dDT = (double)(m_llCurCount.QuadPart - m_llPrevCount.QuadPart) / (double)m_llFrequency.QuadPart;
+	m_dDT = (double)(m_lICurCount.QuadPart - m_lIPrevCount.QuadPart) / (double)m_lIFrequency.QuadPart;
 
 	// 이전 카운트 값을 현재 카운트 값으로 갱신(다음번에 계산을 위해서)
-	m_llPrevCount = m_llCurCount;
+	m_lIPrevCount = m_lICurCount;
 
 	++m_iCallCount;
 	m_dAcc += m_dDT;	// DT 누적

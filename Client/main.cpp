@@ -9,7 +9,7 @@
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스
-HWND      g_hWnd;                                 // 현재 윈도우
+HWND      g_hWnd;                               // 현재 윈도우
 WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름
 
@@ -61,8 +61,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
 
         return FALSE;
     }
-
-
 
     // 단축키 테이블 정보 로딩
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));

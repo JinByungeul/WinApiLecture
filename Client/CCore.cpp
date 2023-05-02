@@ -54,14 +54,16 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 void CCore::process()
 {
-	// Manager Update
+	// ===================
+	// Update - °¢ Manager
+	// ===================
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
 	CSceneMgr::GetInst()->update();
 
-	// ================
+	// ===================
 	// Render
-	// ================
+	// ===================
 	// È­¸é Clear
 	Rectangle(m_memDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
 
