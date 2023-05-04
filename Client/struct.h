@@ -7,6 +7,21 @@ struct Vec2
 	float y;
 
 public:
+	float length()
+	{
+		return sqrt(x * x + y * y);
+	}
+
+	Vec2& normalize()
+	{
+		float fLen = length();
+		
+		x /= fLen;
+		y /= fLen;
+		return *this;
+	}
+
+public:
 	Vec2()
 		: x(0.f)
 		, y(0.f)
