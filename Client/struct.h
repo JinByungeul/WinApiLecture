@@ -6,18 +6,23 @@ struct Vec2
 	float x;
 	float y;
 
-public:
+private:
 	float length()
 	{
 		return sqrt(x * x + y * y);
 	}
 
+public:
+
 	Vec2& normalize()
 	{
 		float fLen = length();
 		
+		assert(fLen != 0.f);	// 조건 거짓이면 Stop!
+
 		x /= fLen;
 		y /= fLen;
+
 		return *this;
 	}
 
