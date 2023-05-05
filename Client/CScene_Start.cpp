@@ -4,6 +4,8 @@
 #include "CObject.h"
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CTexture.h"
+#include "CPathMgr.h"
 
 #include "CCore.h"
 
@@ -19,6 +21,7 @@ CScene_Start::~CScene_Start()
 
 void CScene_Start::Enter()
 {
+	
 	// Objec ¸¦ Ãß°¡
 	CObject* pObj = new CPlayer;
 	pObj->SetPos(Vec2(640.f, 384.f));

@@ -4,8 +4,8 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "CPathMgr.h"
 
-#include "CObject.h"
 
 
 CCore::CCore()
@@ -45,6 +45,7 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	DeleteObject(hOldBit);
 
 	// Manager 초기화
+	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CSceneMgr::GetInst()->init();
@@ -71,4 +72,6 @@ void CCore::process()
 
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
 		, m_memDC, 0, 0, SRCCOPY);
+
+	CTimeMgr::GetInst()->render();	// 제목 표시줄에 FPS, DT 표시
 }

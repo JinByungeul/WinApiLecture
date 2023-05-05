@@ -20,6 +20,7 @@ private:
 public:
 	void init();
 	void update();
+	void render();	// 윈도우 제목 표시줄에 텍스트 표시
 
 public:
 	double GetDT() { return m_dDT; }

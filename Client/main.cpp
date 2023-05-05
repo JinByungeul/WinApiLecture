@@ -33,11 +33,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance  /* 실행된 프로세스의 시
                     , _In_ LPWSTR lpCmdLine
                     , _In_ int nCmdShow)
 {
+    // My-4 메모리 누수 체크
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc(220);   // 문제 생긴 곳에 중단점 => 디버깅 후 주석처리 요함!!!
+
     UNREFERENCED_PARAMETER(hPrevInstance);  // 쓰이지 않음
     UNREFERENCED_PARAMETER(lpCmdLine);      // 쓰이지 않음
 
     // TODO: 여기에 코드를 입력합니다.
-
+    
 
 
 

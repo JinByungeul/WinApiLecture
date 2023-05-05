@@ -6,34 +6,41 @@
 #include "CMissile.h"
 #include "CSceneMgr.h"
 #include "CScene.h"
+#include "CTexture.h"
+#include "CPathMgr.h"
+#include "CResMgr.h"
 
 CPlayer::CPlayer()
+	: m_pTex(nullptr)
 {
+	// Texture 로딩하기
+	m_pTex = CResMgr::GetInst()->loadTexture(L"player_64.bmp", L"texture\\player_64.bmp");
 }
 
 CPlayer::~CPlayer()
 {
+
 }
 
 void CPlayer::update()
 {
 	Vec2 vPos = GetPos();
 
-	if (KEY_HOLD(KEY::W))
-	{
-		vPos.y -= 200.f * fDT;
-	}
-	if (KEY_HOLD(KEY::S))
-	{
-		vPos.y += 200.f * fDT;
-	}
-	if (KEY_HOLD(KEY::A))
+	if (KEY_HOLD(KEY::A) || KEY_HOLD(KEY::LEFT))
 	{
 		vPos.x -= 200.f * fDT;
 	}
-	if (KEY_HOLD(KEY::D))
+	if (KEY_HOLD(KEY::D) || KEY_HOLD(KEY::RIGHT))
 	{
 		vPos.x += 200.f * fDT;
+	}
+	if (KEY_HOLD(KEY::W) || KEY_HOLD(KEY::UP))
+	{
+		vPos.y -= 200.f * fDT;
+	}
+	if (KEY_HOLD(KEY::S) || KEY_HOLD(KEY::DOWN))
+	{
+		vPos.y += 200.f * fDT;
 	}
 
 	if (KEY_TAP(KEY::SPACE))
@@ -44,13 +51,28 @@ void CPlayer::update()
 	SetPos(vPos);	// 변경 위치 적용
 }
 
-void CPlayer::render(HDC _dc)
+void CPlayer::render(HDC _hDC)
 {
-	Vec2 vPos = GetPos();
-	Vec2 vScale = GetScale();
+	// Player에 텍스쳐 입히기
+	int iW = (int)m_pTex->width();
+	int iH = (int)m_pTex->height();
 
-	Rectangle(_dc, (int)(vPos.x - vScale.x / 2.f), (int)(vPos.y - vScale.y / 2.f)
-		, (int)(vPos.x + vScale.x / 2.f), (int)(vPos.y + vScale.y / 2.f));
+	Vec2 vPos = GetPos();
+
+	//BitBlt(_hDC
+	//	, vPos.x - (float)(iW / 2)
+	//	, vPos.y - (float)(iH / 2)
+	//	, iW, iH
+	//	, m_pTex->getDC()
+	//	, 0, 0, SRCCOPY);
+
+	TransparentBlt(_hDC
+		, vPos.x - (float)(iW / 2)
+		, vPos.y - (float)(iH / 2)
+		, iW, iH
+		, m_pTex->getDC()
+		, 0, 0, iW, iH
+		, RGB(255, 0, 255));
 
 }
 
@@ -63,7 +85,7 @@ void CPlayer::CreateMissile()
 	CMissile* pMissile = new CMissile;
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(25.f, 25.f));
-	pMissile->SetDir(Vec2(-1.f, -7.f));
+	pMissile->SetDir(Vec2(0.f, -1.f));
 	
 	CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
 	pCurScene->AddObject(pMissile, GROUP_TYPE::MISSILE);
