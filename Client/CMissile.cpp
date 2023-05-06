@@ -9,6 +9,7 @@ CMissile::CMissile()
 {
 	// 벡터의 크기를 1로 정규화 수행
 	m_vDir.normalize();
+	createCollider();
 }
 
 CMissile::~CMissile()

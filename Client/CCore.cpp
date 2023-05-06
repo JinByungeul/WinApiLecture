@@ -14,6 +14,8 @@ CCore::CCore()
 	, m_hDC(0)
 	, m_hBit(0)
 	, m_memDC(0)
+	, m_arrBrush{}
+	, m_arrPen{}
 { 
 }
 
@@ -23,6 +25,12 @@ CCore::~CCore()
 
 	DeleteDC(m_memDC);
 	DeleteObject(m_hBit);
+
+	// 자주 사용할 펜 제거
+	for (UINT i = 0; i < (UINT)PEN_TYPE::END; ++i)
+	{
+		DeleteObject( m_arrPen[i]);
+	}
 }
 
 int CCore::init(HWND _hWnd, POINT _ptResolution)
@@ -43,6 +51,9 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 
 	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
 	DeleteObject(hOldBit);
+
+	// 자주 사용할 펜과 브러쉬 생성
+	createBrushPen();
 
 	// Manager 초기화
 	CPathMgr::GetInst()->init();
@@ -74,4 +85,15 @@ void CCore::process()
 		, m_memDC, 0, 0, SRCCOPY);
 
 	CTimeMgr::GetInst()->render();	// 제목 표시줄에 FPS, DT 표시
+}
+
+void CCore::createBrushPen()
+{
+	// hollow brush
+	m_arrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+
+	// red green blue pen
+	m_arrPen[(UINT)PEN_TYPE::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 }

@@ -17,6 +17,7 @@ public:
 	const wstring& GetName() { return m_strName; }
 
 	void update();
+	void finalUpdate();			// 충돌 기능 관련 등
 	void render(HDC _dc);
 
 	virtual void Enter() = 0;	// 해당 Scene 에 진입 시 호출

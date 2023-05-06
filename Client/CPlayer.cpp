@@ -1,6 +1,7 @@
 #include "pch.h"
-#include "CPlayer.h"
 
+#include "CObject.h"
+#include "CPlayer.h"
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CMissile.h"
@@ -9,12 +10,17 @@
 #include "CTexture.h"
 #include "CPathMgr.h"
 #include "CResMgr.h"
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 	: m_pTex(nullptr)
 {
 	// Texture 로딩하기
 	m_pTex = CResMgr::GetInst()->loadTexture(L"player_64.bmp", L"texture\\player_64.bmp");
+
+	// 충돌 기능 탑재
+	createCollider();
+	getCollider()->setScale(Vec2(74.f, 74.f));
 }
 
 CPlayer::~CPlayer()
@@ -74,6 +80,8 @@ void CPlayer::render(HDC _hDC)
 		, 0, 0, iW, iH
 		, RGB(255, 0, 255));
 
+	// 충돌체 그리기
+	CObject::renderComponent(_hDC);
 }
 
 void CPlayer::CreateMissile()

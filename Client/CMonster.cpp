@@ -9,7 +9,7 @@ CMonster::CMonster()
 	, m_fMaxDistance(50.f)
 	, m_iDir(1)	// Right πÊ«‚
 {
-
+	createCollider();
 }
 CMonster::~CMonster()
 {
