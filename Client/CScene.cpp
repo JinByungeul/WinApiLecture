@@ -52,4 +52,3 @@ void CScene::render(HDC _dc)
 	}
 }
 
-

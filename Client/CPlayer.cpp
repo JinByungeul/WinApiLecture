@@ -20,7 +20,8 @@ CPlayer::CPlayer()
 
 	// 충돌 기능 탑재
 	createCollider();
-	getCollider()->setScale(Vec2(74.f, 74.f));
+	getCollider()->setOffsetPos(Vec2(0.f, 12.f));
+	getCollider()->setScale(Vec2(20.f, 40.f));
 }
 
 CPlayer::~CPlayer()
@@ -73,8 +74,8 @@ void CPlayer::render(HDC _hDC)
 	//	, 0, 0, SRCCOPY);
 
 	TransparentBlt(_hDC
-		, vPos.x - (float)(iW / 2)
-		, vPos.y - (float)(iH / 2)
+		, (int)(vPos.x - (float)(iW / 2))
+		, (int)(vPos.y - (float)(iH / 2))
 		, iW, iH
 		, m_pTex->getDC()
 		, 0, 0, iW, iH

@@ -29,7 +29,7 @@ void CObject::render(HDC _dc)
 				 , (int)(m_vPos.x + m_vScale.x / 2.f), (int)(m_vPos.y + m_vScale.y / 2.f));
 
 	// 컴포넌트를 그린다
-	//renderComponent(_dc);
+	renderComponent(_dc);
 }
 
 void CObject::renderComponent(HDC _dc)

@@ -5,7 +5,7 @@
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
-
+#include "CCollisionMgr.h"
 
 
 CCore::CCore()
@@ -71,7 +71,9 @@ void CCore::process()
 	// ===================
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
+
 	CSceneMgr::GetInst()->update();
+	CCollisionMgr::GetInst()->update();	// 충돌 검사
 
 	// ===================
 	// Render
