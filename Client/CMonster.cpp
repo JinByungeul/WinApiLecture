@@ -3,12 +3,14 @@
 
 #include "CTimeMgr.h"
 #include "CCollider.h"
+#include "func.h"
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f, 0.f))
 	, m_fSpeed(100.f)
 	, m_fMaxDistance(50.f)
 	, m_iDir(1)	// Right 방향
+	, m_iHP(5)
 {
 	// 충돌체 생성 및 크기 지정
 	createCollider();
@@ -48,4 +50,27 @@ void CMonster::render(HDC _dc)
 	//	, (int)(vPos.x + vScale.x / 2.f), (int)(vPos.y + vScale.y / 2.f));
 
 	CObject::render(_dc);
+}
+
+void CMonster::onCollision(CCollider* _pOther)
+{
+}
+
+void CMonster::onCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->getObject();
+
+	if (pOtherObj->getName() == L"Missile_Player")
+	{
+		m_iHP -= 1;
+
+		if (m_iHP <= 0)
+		{
+			deleteObject(this);
+		}
+	}
+}
+
+void CMonster::onCollisionExit(CCollider* _pOther)
+{
 }

@@ -2,6 +2,7 @@
 #include "CMissile.h"
 
 #include "CTimeMgr.h"
+#include "CCollider.h"
 
 CMissile::CMissile()
 	: m_fTheta(PI / 4.f)		// 45도
@@ -9,7 +10,8 @@ CMissile::CMissile()
 {
 	// 벡터의 크기를 1로 정규화 수행
 	m_vDir.normalize();
-	createCollider();
+	createCollider();	// 충돌 기능 생성
+	getCollider()->setScale(Vec2(15.f, 15.f));
 }
 
 CMissile::~CMissile()
@@ -38,4 +40,15 @@ void CMissile::render(HDC _dc)
 
 	Ellipse(_dc, (int)(vPos.x - vScale.x / 2.f), (int)(vPos.y - vScale.y / 2.f)
 		, (int)(vPos.x + vScale.x / 2.f), (int)(vPos.y + vScale.y / 2.f));
+
+	renderComponent(_dc);
+}
+
+void CMissile::onCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->getObject();
+	if (pOtherObj->getName() == L"Monster")
+	{
+		DeleteObject(this);
+	}
 }

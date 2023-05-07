@@ -22,6 +22,9 @@ public:
     virtual void render(HDC _dc);
 
 public:
+    virtual void onCollisionEnter(CCollider* _pOther);
+
+public:
     CMissile();
     ~CMissile();
 };

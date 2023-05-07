@@ -28,11 +28,11 @@
 // SceneÀÇ ±×·ì
 enum class GROUP_TYPE
 {
-    DEFAUL,     // 0
-    PLAYER,     // 1
-    MISSILE,    // 2
-    MONSTER,    // 3
-
+    DEFAUL,         // 0
+    PLAYER,         // 1
+    MONSTER,        // 2
+    PROJ_PLAYER,    // 3
+    PROJ_MONSTER,   // 4
 
     END = 32,
 };
@@ -59,6 +59,15 @@ enum class PEN_TYPE
     RED,
     GREEN,
     BLUE,
+
+    END,
+};
+
+enum class EVENT_TYPE
+{
+    CREATE_OBJECT,
+    DELETE_OBJECT,
+    SCENE_CHANGE,
 
     END,
 };

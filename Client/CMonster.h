@@ -10,7 +10,7 @@ private:
     float m_fSpeed;
     float m_fMaxDistance;
     int m_iDir; // 1, -1(left)
-
+    int m_iHP;
 
 public:
     float GetSpeed() { return m_fSpeed; }
@@ -21,6 +21,10 @@ public:
 public:
     virtual void update();
     virtual void render(HDC _dc);
+
+    virtual void onCollision(CCollider* _pOther);
+    virtual void onCollisionEnter(CCollider* _pOther);
+    virtual void onCollisionExit(CCollider* _pOther);
 
 public:
     CMonster();

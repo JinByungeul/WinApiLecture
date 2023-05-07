@@ -24,6 +24,8 @@ public:
 
 	Vec2 getFinalPos() { return m_vFinalPos; }
 
+	CObject* getObject() { return m_pOwner; }
+
 	UINT getID() { return m_iID; }
 
 public:
