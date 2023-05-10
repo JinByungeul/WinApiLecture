@@ -20,3 +20,8 @@ void deleteObject(CObject* _pObj)
 
 	CEventMgr::GetInst()->addEvent(evt);
 }
+
+void changeScene(SCENE_TYPE _eNext)
+{
+
+}
