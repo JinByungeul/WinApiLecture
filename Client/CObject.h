@@ -36,7 +36,7 @@ public:
 	virtual void onCollisionExit(CCollider* _pOther) {}
 
 private:
-	void setDead() { m_bAlive; }
+	void setDead() { m_bAlive = false; }// 요기를 false 세팅 안해서 에러 났었음!(23.05.10)
 
 public:
 	virtual void update() = 0;			// 순수가상함수
