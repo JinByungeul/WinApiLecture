@@ -28,7 +28,7 @@ void CScene_Start::update()
 
 	if (KEY_TAP(KEY::ENTER))
 	{
-		CSceneMgr::GetInst()->changeScene(SCENE_TYPE::TOOL);
+		//CSceneMgr::GetInst()->changeScene(SCENE_TYPE::TOOL);
 	}
 
 }
