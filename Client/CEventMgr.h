@@ -14,7 +14,6 @@ class CEventMgr
 	SINGLE(CEventMgr);
 private:
 	vector<tEvent>	m_vecEvent;
-	
 	vector<CObject*> m_vecDead;
 
 private:
@@ -22,8 +21,6 @@ private:
 
 public:
 	void update();
-
 	void addEvent(const tEvent& _evt) { m_vecEvent.push_back(_evt); }
-
 };
 

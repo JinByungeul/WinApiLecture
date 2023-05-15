@@ -18,5 +18,9 @@ public:
 public:
 	CScene* GetCurScene() { return m_pCurScene; }
 
+private:
+	void changeScene(SCENE_TYPE _eNext);
+
+	friend class CEventMgr;
 };
 

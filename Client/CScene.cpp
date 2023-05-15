@@ -2,6 +2,7 @@
 #include "CScene.h"
 
 #include "CObject.h"
+#include "func.h"
 
 CScene::CScene()
 {
@@ -65,3 +66,16 @@ void CScene::render(HDC _dc)
 	}
 }
 
+void CScene::deleteGroup(GROUP_TYPE _eTarget)
+{
+	// vector<T> 함수 템플릿 임!
+	safeDeleteVec<CObject*>(m_arrObj[(UINT)_eTarget]);
+}
+
+void CScene::deleteAll()
+{
+	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
+	{
+		deleteGroup((GROUP_TYPE)i);
+	}
+}

@@ -11,6 +11,7 @@
 #include "CCollisionMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "func.h"
 
 CScene_Start::CScene_Start()
 {
@@ -29,8 +30,8 @@ void CScene_Start::update()
 	if (KEY_TAP(KEY::ENTER))
 	{
 		//CSceneMgr::GetInst()->changeScene(SCENE_TYPE::TOOL);
+		changeScene(SCENE_TYPE::TOOL);
 	}
-
 }
 
 void CScene_Start::Enter()
@@ -71,6 +72,8 @@ void CScene_Start::Enter()
 
 void CScene_Start::Exit()
 {
+	deleteAll();
+
 	// 충돌 그룹 해제
 	CCollisionMgr::GetInst()->resetGroup();
 }
