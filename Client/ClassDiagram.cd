@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CObject" Collapsed="true">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAEABAAAgCBEAABiAABwAAABAIEgEgiAUQAA=</HashCode>
+      <FileName>CObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMissile" Collapsed="true">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAACAAAAgAAAAAAAggAAAACAAAAAAAUAAA=</HashCode>
+      <FileName>CMissile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMonster" Collapsed="true">
+    <Position X="4.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABBACAAAAAACEBAAAA0AQAAAAAAAASIUAAA=</HashCode>
+      <FileName>CMonster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPlayer" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAACAAAAAAAAAAAAAgAAAAAAAAAAAWAAA=</HashCode>
+      <FileName>CPlayer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CScene" Collapsed="true">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAQAAAAAAAAAAAAAAAABAAEAAAAIAgAQAAURCg=</HashCode>
+      <FileName>CScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CScene_Start" Collapsed="true">
+    <Position X="6.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAIAAAAAAEAAQ=</HashCode>
+      <FileName>CScene_Start.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CSceneTool" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAIAAAAAAEAAI=</HashCode>
+      <FileName>CSceneTool.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CCore" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQAAgAASIgAAAIAAIAAAAIAAAAACEAAIwA=</HashCode>
+      <FileName>CCore.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTimeMgr" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAADAIAAAAAAAABBAAIAAAQQAAAUBAA=</HashCode>
+      <FileName>CTimeMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CKeyMgr" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAIAAAAAAAAAAAAIAAAAAAQAEAAA=</HashCode>
+      <FileName>CKeyMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CPathMgr" Collapsed="true">
+    <Position X="13.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAgAAAAIAAAAQAAAAAAA=</HashCode>
+      <FileName>CPathMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CResMgr" Collapsed="true">
+    <Position X="14.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAABAAAAAAAAIAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CResMgr.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="tKeyInfo" Collapsed="true">
+    <Position X="12.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CKeyMgr.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="KEY_STATE" Collapsed="true">
+    <Position X="14" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CKeyMgr.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="KEY" Collapsed="true">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAAACAAAAAAgAAAAAAAAQAAAICgAAgAAAAvin+YQE=</HashCode>
+      <FileName>CKeyMgr.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

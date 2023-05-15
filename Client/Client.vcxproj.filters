@@ -77,6 +77,12 @@
     <Filter Include="Engine\03. Manager\EventMgr">
       <UniqueIdentifier>{e376a1dd-ca34-46d5-b1ee-bb4a5d8bddfa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Document">
+      <UniqueIdentifier>{10ccc4ce-f894-4ea7-927b-532876e531fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Document\Uml">
+      <UniqueIdentifier>{aa708051-57c6-47e9-adf3-20457e593c7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -240,5 +246,10 @@
     <ClCompile Include="CSceneTool.cpp">
       <Filter>Engine\05. Scene\Scene_Tool</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd">
+      <Filter>Document\Uml</Filter>
+    </None>
   </ItemGroup>
 </Project>
