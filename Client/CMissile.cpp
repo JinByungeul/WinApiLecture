@@ -3,6 +3,7 @@
 
 #include "CTimeMgr.h"
 #include "CCollider.h"
+#include "func.h"
 
 CMissile::CMissile()
 	: m_fTheta(PI / 4.f)		// 45µµ
@@ -50,6 +51,6 @@ void CMissile::onCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->getName() == L"Monster")
 	{
-		DeleteObject(this);
+		deleteObject(this);
 	}
 }
