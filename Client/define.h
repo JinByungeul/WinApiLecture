@@ -16,6 +16,8 @@
 #define fDT CTimeMgr::GetInst()->GetfDT()
 #define DT CTimeMgr::GetInst()->GetDT()
 
+#define CLONE(type) type* clone() { return new type(*this); }
+
 // 키 입력 조건 체크
 #define KEY_CHECK(key, state) CKeyMgr::GetInst()->GetKeyState(key) == state
 #define KEY_AWAY(key) KEY_CHECK(key, KEY_STATE::AWAY)

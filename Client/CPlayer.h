@@ -14,6 +14,8 @@ public:
     virtual void update();
     virtual void render(HDC _hDC);
 
+    CLONE(CPlayer);
+
 private:
     void CreateMissile();
 

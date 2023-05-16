@@ -45,8 +45,12 @@ public:
 
 	void renderComponent(HDC _dc);		// 컴포넌트 그리기
 
+	// 자기 자신의 복제 버전을 되돌려 줌
+	virtual CObject* clone() = 0;
+
 public:
 	CObject();
+	CObject(const CObject& _origin);	// 복사 생성자 필요
 	virtual ~CObject();
 
 	friend class CEventMgr;

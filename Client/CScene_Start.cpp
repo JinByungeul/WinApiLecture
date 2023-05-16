@@ -42,6 +42,11 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f, 100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
+	// 새로운 Player 복제
+	CObject* pOtherPlayer = pObj->clone();
+	pOtherPlayer->SetPos(Vec2(740.f, 384.f));
+	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
+
 	// Monster Object 배치
 	int iMonCount = 3;
 	float fMoveDist = 25.f;
