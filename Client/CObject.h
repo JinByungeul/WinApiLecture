@@ -1,6 +1,7 @@
 #pragma once
 
 class CCollider;
+class CAnimator;
 
 // 추상클래스
 class CObject
@@ -11,7 +12,9 @@ private:
 	Vec2		m_vPos;			// 물체의 중심점 좌표(x, y)
 	Vec2		m_vScale;		// 물체의 크기(w, h)
 
+	// Component
 	CCollider*	m_pCollider;	// 충돌 기능 컴포넌트
+	CAnimator*	m_pAnimator;	// 애니메이션 컴포넌트
 
 	bool		m_bAlive;		// 활성 / 비활성 상태
 
@@ -30,6 +33,7 @@ public:
 	bool isDead() { return !m_bAlive; }
 
 	void createCollider();
+	void createAnimator();
 
 	virtual void onCollision(CCollider* _pOther) {}
 	virtual void onCollisionEnter(CCollider* _pOther) {}
