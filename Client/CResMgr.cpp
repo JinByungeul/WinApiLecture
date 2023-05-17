@@ -12,11 +12,7 @@ CResMgr::CResMgr()
 
 CResMgr::~CResMgr()
 {
-    map<wstring, CTexture*>::iterator iter = m_mapTex.begin();
-    for (; iter != m_mapTex.end(); ++iter)
-    {
-        delete iter->second;
-    }
+    safeDeleteMap(m_mapTex);
 }
 
 CTexture* CResMgr::loadTexture(const wstring& _strKey, const wstring& _strRelativePath)

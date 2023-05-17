@@ -83,6 +83,15 @@
     <Filter Include="Document\Uml">
       <UniqueIdentifier>{aa708051-57c6-47e9-adf3-20457e593c7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Component\01. Collider">
+      <UniqueIdentifier>{a5f79ddf-cc7d-455b-8192-ffe3423cd9d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Component\02. Animator">
+      <UniqueIdentifier>{cfb7d2c3-62a4-4a16-819d-cf448e3280e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\07. Component\02. Animator\Animation">
+      <UniqueIdentifier>{a27194b8-60e3-4f21-a215-315caa9e5a7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -149,9 +158,6 @@
     <ClInclude Include="CResMgr.h">
       <Filter>Engine\03. Manager\ResMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CCollider.h">
-      <Filter>Engine\07. Component</Filter>
-    </ClInclude>
     <ClInclude Include="SelectGDI.h">
       <Filter>Engine\08. Module</Filter>
     </ClInclude>
@@ -167,6 +173,13 @@
     <ClInclude Include="CSceneTool.h">
       <Filter>Engine\05. Scene\Scene_Tool</Filter>
     </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\07. Component\01. Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimator.h">
+      <Filter>Engine\07. Component\02. Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -228,9 +241,6 @@
     <ClCompile Include="CResMgr.cpp">
       <Filter>Engine\03. Manager\ResMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CCollider.cpp">
-      <Filter>Engine\07. Component</Filter>
-    </ClCompile>
     <ClCompile Include="SelectGDI.cpp">
       <Filter>Engine\08. Module</Filter>
     </ClCompile>
@@ -246,6 +256,13 @@
     <ClCompile Include="CSceneTool.cpp">
       <Filter>Engine\05. Scene\Scene_Tool</Filter>
     </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\07. Component\01. Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimator.cpp">
+      <Filter>Engine\07. Component\02. Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd">
