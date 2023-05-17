@@ -2,7 +2,6 @@
 #include "CSceneTool.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
-#include "func.h"
 
 CSceneTool::CSceneTool()
 {

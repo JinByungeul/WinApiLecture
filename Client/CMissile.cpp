@@ -50,6 +50,6 @@ void CMissile::onCollisionEnter(CCollider* _pOther)
 
 	if (pOtherObj->getName() == L"Monster")
 	{
-		DeleteObject(this);
+		deleteObject(this);
 	}
 }

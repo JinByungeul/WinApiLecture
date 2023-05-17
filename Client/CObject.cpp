@@ -51,11 +51,6 @@ void CObject::renderComponent(HDC _dc)
 		m_pCollider->render(_dc);
 }
 
-CObject* CObject::clone()
-{
-	return nullptr;
-}
-
 void CObject::createCollider()
 {
 	m_pCollider = new CCollider;

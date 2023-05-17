@@ -11,7 +11,6 @@
 #include "CPathMgr.h"
 #include "CResMgr.h"
 #include "CCollider.h"
-#include "func.h"
 
 CPlayer::CPlayer()
 	: m_pTex(nullptr)
@@ -99,7 +98,5 @@ void CPlayer::CreateMissile()
 	pMissile->SetDir(Vec2(0.f, -1.f));
 	
 	// 요기를 EventMgr 에서 추가
-	//CScene* pCurScene = CSceneMgr::GetInst()->GetCurScene();
-	//pCurScene->AddObject(pMissile, GROUP_TYPE::MISSILE);
 	createObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
 }
