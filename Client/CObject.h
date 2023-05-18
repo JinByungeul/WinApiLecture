@@ -14,7 +14,7 @@ private:
 
 	// Component
 	CCollider*	m_pCollider;	// 충돌 기능 컴포넌트
-	CAnimator*	m_pAnimator;	// 애니메이션 컴포넌트
+	CAnimator*	m_pAnimator;	// 애니메이터 컴포넌트
 
 	bool		m_bAlive;		// 활성 / 비활성 상태
 
@@ -28,12 +28,13 @@ public:
 	Vec2 GetPos() { return m_vPos; }
 	Vec2 GetScale() { return m_vScale; }
 
-	CCollider* getCollider() { return m_pCollider; }
-
 	bool isDead() { return !m_bAlive; }
 
-	void createCollider();
-	void createAnimator();
+	CCollider* getCollider() { return m_pCollider; }
+	CAnimator* getAnimator() { return m_pAnimator; }
+
+	void createCollider();		// 충돌체 생성
+	void createAnimator();		// 애니메이터 생성
 
 	virtual void onCollision(CCollider* _pOther) {}
 	virtual void onCollisionEnter(CCollider* _pOther) {}
@@ -59,4 +60,3 @@ public:
 
 	friend class CEventMgr;
 };
-
