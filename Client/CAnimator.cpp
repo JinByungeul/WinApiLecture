@@ -14,14 +14,16 @@ CAnimator::~CAnimator()
 	safeDeleteMap(m_mapAnim);
 }
 
-void CAnimator::createAnimation()
+CAnimation* CAnimator::findAnimation(const wstring& _strName)
 {
+	map<wstring, CAnimation*>::iterator iter = m_mapAnim.find(_strName);
 
-}
+	if (iter == m_mapAnim.end())
+	{
+		return nullptr;
+	}
 
-void CAnimator::findAnimation()
-{
-
+	return iter->second;
 }
 
 void CAnimator::play()
@@ -43,4 +45,18 @@ void CAnimator::render(HDC _dc)
 	{
 		m_pCurAnim->render(_dc);
 	}
+}
+
+void CAnimator::createAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount)
+{
+	CAnimation* pAnim = findAnimation(_strName);
+	assert(nullptr == pAnim);
+
+	pAnim = new CAnimation;
+
+	pAnim->setName(_strName);
+	pAnim->m_pAnimator = this;
+	pAnim->create(_pTex, _vLT, _vSliceSize, _vStep, _iFrameCount);
+
+	m_mapAnim.insert(make_pair(_strName, pAnim));
 }

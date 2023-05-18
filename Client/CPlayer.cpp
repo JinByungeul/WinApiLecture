@@ -11,17 +11,24 @@
 #include "CPathMgr.h"
 #include "CResMgr.h"
 #include "CCollider.h"
+#include "CAnimator.h"
 
 CPlayer::CPlayer()
 	: m_pTex(nullptr)
 {
 	// Texture 로딩하기
-	m_pTex = CResMgr::GetInst()->loadTexture(L"player_64.bmp", L"texture\\player_64.bmp");
+	//m_pTex = CResMgr::GetInst()->loadTexture(L"player_64.bmp", L"texture\\player_64.bmp");
 
 	// 충돌 기능 탑재
 	createCollider();
 	getCollider()->setOffsetPos(Vec2(0.f, 12.f));
 	getCollider()->setScale(Vec2(20.f, 40.f));
+
+	// Texture 로딩하기
+	m_pTex = CResMgr::GetInst()->loadTexture(L"PlayerTex", L"texture\\animation01.bmp");
+	createAnimator();
+	getAnimator()->createAnimation(m_pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 10);
+
 }
 
 CPlayer::~CPlayer()
