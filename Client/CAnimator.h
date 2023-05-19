@@ -13,9 +13,12 @@ private:
 	CObject*					m_pOwner;
 	
 public:
-	void createAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount);
+	CObject* getObj() { return m_pOwner; }
+
+public:
+	void createAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount);
 	CAnimation* findAnimation(const wstring& _strName);
-	void play();
+	void play(const wstring& _strName);
 
 	void update();
 	void render(HDC _dc);

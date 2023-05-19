@@ -14,7 +14,7 @@
 #include "CAnimator.h"
 
 CPlayer::CPlayer()
-	: m_pTex(nullptr)
+	//: m_pTex(nullptr)
 {
 	// Texture 로딩하기
 	//m_pTex = CResMgr::GetInst()->loadTexture(L"player_64.bmp", L"texture\\player_64.bmp");
@@ -25,10 +25,11 @@ CPlayer::CPlayer()
 	getCollider()->setScale(Vec2(20.f, 40.f));
 
 	// Texture 로딩하기
-	m_pTex = CResMgr::GetInst()->loadTexture(L"PlayerTex", L"texture\\animation01.bmp");
+	CTexture* pTex = CResMgr::GetInst()->loadTexture(L"PlayerTex", L"texture\\animation01.bmp");
+	
 	createAnimator();
-	getAnimator()->createAnimation(L"PlayerAnim", m_pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 10);
-
+	getAnimator()->createAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
+	getAnimator()->play(L"WALK_DOWN");
 }
 
 CPlayer::~CPlayer()
@@ -63,31 +64,12 @@ void CPlayer::update()
 	}
 
 	SetPos(vPos);	// 변경 위치 적용
+
+	getAnimator()->update();
 }
 
 void CPlayer::render(HDC _hDC)
 {
-	// Player에 텍스쳐 입히기
-	int iW = (int)m_pTex->width();
-	int iH = (int)m_pTex->height();
-
-	Vec2 vPos = GetPos();
-
-	//BitBlt(_hDC
-	//	, vPos.x - (float)(iW / 2)
-	//	, vPos.y - (float)(iH / 2)
-	//	, iW, iH
-	//	, m_pTex->getDC()
-	//	, 0, 0, SRCCOPY);
-
-	TransparentBlt(_hDC
-		, (int)(vPos.x - (float)(iW / 2))
-		, (int)(vPos.y - (float)(iH / 2))
-		, iW, iH
-		, m_pTex->getDC()
-		, 0, 0, iW, iH
-		, RGB(255, 0, 255));
-
 	// 충돌체 그리기
 	CObject::renderComponent(_hDC);
 }

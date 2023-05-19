@@ -26,9 +26,9 @@ CAnimation* CAnimator::findAnimation(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::play()
+void CAnimator::play(const wstring& _strName)
 {
-
+	m_pCurAnim = findAnimation(_strName);
 }
 
 void CAnimator::update()
@@ -47,7 +47,8 @@ void CAnimator::render(HDC _dc)
 	}
 }
 
-void CAnimator::createAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, UINT _iFrameCount)
+void CAnimator::createAnimation(const wstring& _strName, CTexture* _pTex
+								, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount)
 {
 	CAnimation* pAnim = findAnimation(_strName);
 	assert(nullptr == pAnim);
@@ -56,7 +57,7 @@ void CAnimator::createAnimation(const wstring& _strName, CTexture* _pTex, Vec2 _
 
 	pAnim->setName(_strName);
 	pAnim->m_pAnimator = this;
-	pAnim->create(_pTex, _vLT, _vSliceSize, _vStep, _iFrameCount);
+	pAnim->create(_pTex, _vLT, _vSliceSize, _vStep, _fDuration, _iFrameCount);
 
 	m_mapAnim.insert(make_pair(_strName, pAnim));
 }
