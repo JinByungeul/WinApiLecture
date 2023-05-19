@@ -16,6 +16,7 @@ CScene::~CScene()
 			// m_arrObj[i] 그룹 벡터의 j 물체 삭제
 			delete m_arrObj[i][j];
 		}
+		m_arrObj[i].clear();
 	}
 }
 

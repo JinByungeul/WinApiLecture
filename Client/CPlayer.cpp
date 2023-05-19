@@ -27,7 +27,7 @@ CPlayer::CPlayer()
 	// Texture 로딩하기
 	m_pTex = CResMgr::GetInst()->loadTexture(L"PlayerTex", L"texture\\animation01.bmp");
 	createAnimator();
-	getAnimator()->createAnimation(m_pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 10);
+	getAnimator()->createAnimation(L"PlayerAnim", m_pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 10);
 
 }
 

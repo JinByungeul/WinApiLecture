@@ -23,4 +23,3 @@ public:
     CPlayer();
     ~CPlayer();
 };
-
