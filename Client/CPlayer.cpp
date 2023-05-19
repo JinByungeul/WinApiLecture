@@ -25,7 +25,7 @@ CPlayer::CPlayer()
 	getCollider()->setScale(Vec2(20.f, 40.f));
 
 	// Texture 로딩하기
-	CTexture* pTex = CResMgr::GetInst()->loadTexture(L"PlayerTex", L"texture\\animation01.bmp");
+	CTexture* pTex = CResMgr::GetInst()->loadTexture(L"walkman_65", L"texture\\walkman_65.bmp");
 	
 	createAnimator();
 	getAnimator()->createAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
