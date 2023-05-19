@@ -201,6 +201,9 @@
     <Image Include="C:\Users\USER\Pictures\animation01.bmp">
       <Filter>Document\Texture</Filter>
     </Image>
+    <Image Include="walkman_65.bmp">
+      <Filter>Document\Texture</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CCore.cpp">

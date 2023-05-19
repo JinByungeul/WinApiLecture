@@ -209,6 +209,7 @@
     <Image Include="C:\Users\USER\Pictures\animation01.bmp" />
     <Image Include="Client.ico" />
     <Image Include="small.ico" />
+    <Image Include="walkman_65.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\USER\Pictures\animation01.pptx" />
