@@ -29,7 +29,7 @@ CPlayer::CPlayer()
 	
 	createAnimator();
 	getAnimator()->createAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
-	getAnimator()->play(L"WALK_DOWN");
+	getAnimator()->play(L"WALK_DOWN", true);
 }
 
 CPlayer::~CPlayer()

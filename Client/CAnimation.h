@@ -19,9 +19,17 @@ private:
 	vector<tAnimFrm>	m_vecFrm;	// 모든 프레임 정보
 	int					m_iCurFrm;	// 현재 프레임
 	float				m_fAccTime;	// 시간 누적
+	bool				m_bFinish;	// 재생 끝났는지
 
 public:
 	const wstring& getName() { return m_strName; }
+	void setFrame(int _iFrameIdx) 
+	{ 
+		m_iCurFrm = _iFrameIdx;
+		m_fAccTime = 0;
+		m_bFinish = false;
+	}
+	bool isFinish() { return m_bFinish; }
 
 private:
 	void setName(const wstring& _strName) { m_strName = _strName; }

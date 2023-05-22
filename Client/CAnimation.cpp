@@ -10,6 +10,7 @@ CAnimation::CAnimation()
 	, m_pTex(nullptr)
 	, m_iCurFrm(0)
 	, m_fAccTime(0.f)
+	, m_bFinish(false)
 {
 }
 
@@ -35,6 +36,9 @@ void CAnimation::create(CTexture* _pTex, Vec2 _vLT, Vec2 _vSliceSize, Vec2 _vSte
 
 void CAnimation::update()
 {
+	if (m_bFinish)
+		return;
+
 	m_fAccTime += fDT;
 
 	if (m_fAccTime > m_vecFrm[m_iCurFrm].fDuration)
@@ -43,7 +47,8 @@ void CAnimation::update()
 
 		if (m_vecFrm.size() <= m_iCurFrm)
 		{
-			m_iCurFrm = 0;
+			m_iCurFrm = -1;
+			m_bFinish = true;
 		}
 
 		m_fAccTime = 0.f;
@@ -52,6 +57,9 @@ void CAnimation::update()
 
 void CAnimation::render(HDC _dc)
 {
+	if (m_bFinish)
+		return;
+
 	CObject* pObj = m_pAnimator->getObj();
 	Vec2 vPos = pObj->GetPos();
 	

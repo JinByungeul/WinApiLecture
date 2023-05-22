@@ -26,7 +26,7 @@ CAnimation* CAnimator::findAnimation(const wstring& _strName)
 	return iter->second;
 }
 
-void CAnimator::play(const wstring& _strName)
+void CAnimator::play(const wstring& _strName, bool _bRepeat)
 {
 	m_pCurAnim = findAnimation(_strName);
 }
@@ -36,6 +36,11 @@ void CAnimator::update()
 	if (nullptr != m_pCurAnim)
 	{
 		m_pCurAnim->update();
+
+		if (m_bRepeat && m_pCurAnim->isFinish())
+		{
+			m_pCurAnim->setFrame(0);
+		}
 	}
 }
 
