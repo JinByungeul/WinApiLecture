@@ -95,6 +95,9 @@
     <Filter Include="Document\Texture">
       <UniqueIdentifier>{0378d729-d9d9-4aa4-aaae-d245b1535f56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\08. Camera">
+      <UniqueIdentifier>{2a4d3cc6-c2f7-48ec-a179-c5d3a5118194}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="CAnimation.h">
       <Filter>Engine\07. Component\02. Animator\01. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Engine\03. Manager\08. Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +281,9 @@
     </ClCompile>
     <ClCompile Include="CAnimation.cpp">
       <Filter>Engine\07. Component\02. Animator\01. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Engine\03. Manager\08. Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

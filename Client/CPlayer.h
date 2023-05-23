@@ -17,7 +17,7 @@ public:
     CLONE(CPlayer);
 
 private:
-    void CreateMissile();
+    void createMissile();
 
 public:
     CPlayer();

@@ -12,6 +12,7 @@
 #include "CResMgr.h"
 #include "CCollider.h"
 #include "CAnimator.h"
+#include "CAnimation.h"
 
 CPlayer::CPlayer()
 	//: m_pTex(nullptr)
@@ -30,6 +31,13 @@ CPlayer::CPlayer()
 	createAnimator();
 	getAnimator()->createAnimation(L"WALK_DOWN", pTex, Vec2(0.f, 260.f), Vec2(60.f, 65.f), Vec2(60.f, 0.f), 0.1f, 10);
 	getAnimator()->play(L"WALK_DOWN", true);
+
+	// Animation에 Offset 적용
+	CAnimation* pAnim = getAnimator()->findAnimation(L"WALK_DOWN");
+	for (int i = 0; i < pAnim->getMaxFrame(); ++i)
+	{
+		pAnim->getFrame(i).vOffset = Vec2(0.f, -20.f);
+	}
 }
 
 CPlayer::~CPlayer()
@@ -60,7 +68,7 @@ void CPlayer::update()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		CreateMissile();
+		createMissile();
 	}
 
 	SetPos(vPos);	// 변경 위치 적용
@@ -74,7 +82,7 @@ void CPlayer::render(HDC _hDC)
 	CObject::renderComponent(_hDC);
 }
 
-void CPlayer::CreateMissile()
+void CPlayer::createMissile()
 {
 	Vec2 vMissilePos = GetPos();
 	vMissilePos.y -= GetScale().y / 2.f;
