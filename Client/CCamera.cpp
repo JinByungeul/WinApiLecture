@@ -51,13 +51,15 @@ void CCamera::update()
 	calDiff();
 }
 
-Vec2 CCamera::calDiff()
+void CCamera::calDiff()
 {
 	// 이전 LookAt과 현재 Look 의 차이 값을 보정해서 현재 LookAt을 구한다.
-
+	Vec2 vLookDir = m_vLookAt - m_vPrevLookAt;
+	m_vCurLookAt = m_vPrevLookAt + vLookDir.normalize() * 500.f * fDT;
 
 	Vec2  vResolution = CCore::GetInst()->GetResolution();
-	Vec2 vCenter = vResolution / 2.f;
-	m_vDiff = m_vLookAt - vCenter;
-	return Vec2();
+	Vec2 vCenter = vResolution / 2;
+
+	m_vDiff = m_vCurLookAt - vCenter;
+	m_vPrevLookAt = m_vCurLookAt;
 }
