@@ -11,6 +11,7 @@
 #include "CCollisionMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "CCamera.h"
 
 CScene_Start::CScene_Start()
 {
@@ -31,6 +32,12 @@ void CScene_Start::update()
 		//CSceneMgr::GetInst()->changeScene(SCENE_TYPE::TOOL);
 		changeScene(SCENE_TYPE::TOOL);
 	}
+
+	if (KEY_TAP(KEY::LBTN))
+	{
+		Vec2 vLookAt = CCamera::GetInst()->getRealPos(MOUSE_POS);
+		CCamera::GetInst()->setLookAt(vLookAt);
+	}
 }
 
 void CScene_Start::Enter()
@@ -45,6 +52,8 @@ void CScene_Start::Enter()
 	//CObject* pOtherPlayer = pObj->clone();
 	//pOtherPlayer->SetPos(Vec2(740.f, 384.f));
 	//AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
+
+	CCamera::GetInst()->setTarget(pObj);
 
 	// Monster Object 배치
 	int iMonCount = 3;
@@ -72,6 +81,8 @@ void CScene_Start::Enter()
 	CCollisionMgr::GetInst()->checkGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
 	CCollisionMgr::GetInst()->checkGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
 
+	// Camera Look 지정
+	CCamera::GetInst()->setLookAt(vResolution / 2.f);
 }
 
 void CScene_Start::Exit()

@@ -7,6 +7,7 @@
 #include "CPathMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
+#include "CCamera.h"
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -71,6 +72,7 @@ void CCore::process()
 	// ===================
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
+	CCamera::GetInst()->update();
 
 	// ===================
 	// Scene 업데이트

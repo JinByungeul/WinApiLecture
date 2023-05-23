@@ -34,7 +34,7 @@ public:
 	}
 
 	tAnimFrm& getFrame(int _iIdx) { return m_vecFrm[_iIdx]; }
-	int getMaxFrame() { return m_vecFrm.size(); }
+	int getMaxFrame() { return (int)m_vecFrm.size(); }
 
 private:
 	void setName(const wstring& _strName) { m_strName = _strName; }
