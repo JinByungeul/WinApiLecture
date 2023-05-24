@@ -72,7 +72,7 @@ public:
 	}
 	Vec2 operator / (float _f)
 	{
-		assert(!(0.f == _f));
+		assert(_f != 0.f);
 		return Vec2(x / _f, y / _f);
 	}
 
