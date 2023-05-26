@@ -12,4 +12,3 @@ public:
 	SelectGDI(HDC _dc, BRUSH_TYPE _eBrushType);
 	~SelectGDI();
 };
-

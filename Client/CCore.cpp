@@ -44,9 +44,10 @@ int CCore::init(HWND _hWnd, POINT _ptResolution)
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, true);
 	SetWindowPos(m_hWnd, nullptr, 100, 100, rt.right - rt.left, rt.bottom - rt.top, 0);
 
-	m_hDC = GetDC(m_hWnd);	// 윈도우 메시지와 관계없이 Device Context 얻기
+	// 윈도우 메시지와 관계없이 Device Context 얻기
+	m_hDC = GetDC(m_hWnd);	
 
-	// 이중 버퍼링 용도의 비트맵과 DC를 만든다
+	// 더블 버퍼링 용도의 비트맵과 메모리용 DC를 만든다
 	m_hBit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
 	m_memDC = CreateCompatibleDC(m_hDC);
 
