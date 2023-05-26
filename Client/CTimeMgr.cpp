@@ -38,6 +38,7 @@ void CTimeMgr::update()
 	m_lIPrevCount = m_lICurCount;
 
 #ifdef _DEBUG
+	// 디버깅 시에 너무 오래 멈춰서 DT가 너무 커져버리면 위치 추적이 어려우니 DT를 보정한다.
 	if (m_dDT > (1. / 60.))
 		m_dDT = (1. / 60.);
 #endif // _DEBUG
