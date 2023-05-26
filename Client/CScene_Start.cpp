@@ -53,7 +53,7 @@ void CScene_Start::Enter()
 	//pOtherPlayer->SetPos(Vec2(740.f, 384.f));
 	//AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
 
-	CCamera::GetInst()->setTarget(pObj);
+	//CCamera::GetInst()->setTarget(pObj);
 
 	// Monster Object ¹èÄ¡
 	int iMonCount = 3;
