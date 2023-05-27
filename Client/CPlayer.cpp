@@ -1,7 +1,5 @@
-#include "pch.h"
-
-#include "CObject.h"
 #include "CPlayer.h"
+
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CMissile.h"

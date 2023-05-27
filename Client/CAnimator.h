@@ -22,6 +22,7 @@ public:
 	void play(const wstring& _strName, bool _bRepeat);
 
 	void update();
+	void finalUpdate();
 	void render(HDC _dc);
 
 public:

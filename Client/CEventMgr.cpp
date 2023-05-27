@@ -61,9 +61,14 @@ void CEventMgr::execute(const tEvent& _evt)
 	}
 		break;
 	case EVENT_TYPE::SCENE_CHANGE:
+	{
 		// lParam : Next Scene Type
+		// Scene 변경
 		CSceneMgr::GetInst()->changeScene((SCENE_TYPE)_evt.lParam);
 
+		// 포커스 UI 해제(이전 SCENE 의 UI 를 가리키고 있기 때문)
+		//CUIMgr::GetInst()->setFocusedUI(nullptr);
+	}
 		break;
 	}
 

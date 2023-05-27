@@ -1,6 +1,7 @@
 #pragma once
 
-// 전방선언
+#include "global.h"
+
 class CObject;
 
 class CScene
@@ -9,9 +10,15 @@ private:
 	vector<CObject*>	m_arrObj[(UINT)GROUP_TYPE::END];	// 오브젝트를 저장 및 관리할 벡터를 그룹 갯수만큼 선언
 	wstring				m_strName;							// Scene 이름
 
+	UINT				m_iTileX;							// 타일 가로 개수
+	UINT				m_iTileY;							// 타일 세로 개수
+
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
+
+	UINT getTileX() { return m_iTileX; }
+	UINT getTileY() { return m_iTileY; }
 
 	virtual void update();
 	virtual void finalUpdate();			// 충돌 기능 관련 등
@@ -22,10 +29,15 @@ public:
 
 public:
 	void AddObject(CObject* _pObj, GROUP_TYPE _eType) { m_arrObj[(UINT)_eType].push_back(_pObj); }
-
 	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eType) { return m_arrObj[(UINT)_eType]; }
+	
 	void deleteGroup(GROUP_TYPE _eTarget);
 	void deleteAll();
+
+	void createTile(UINT _iXCount, UINT _iYCount);
+	void loadTile(const wstring& _strRelativePath);
+
+	vector<CObject*>& getUIGroup() { return m_arrObj[(UINT)GROUP_TYPE::UI]; }
 
 public:
 	CScene();

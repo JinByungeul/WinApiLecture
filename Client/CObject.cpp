@@ -52,7 +52,14 @@ CObject::~CObject()
 void CObject::finalUpdate()
 {
 	if (m_pCollider)
+	{
 		m_pCollider->finalUpdate();
+	}
+
+	if (m_pAnimator)
+	{
+		m_pAnimator->finalUpdate();
+	}
 }
 
 void CObject::render(HDC _dc)

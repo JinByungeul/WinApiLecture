@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CSceneMgr.h"
+
 #include "CScene_Start.h"
 #include "CSceneTool.h"
 #include "CEventMgr.h"
@@ -40,7 +41,6 @@ void CSceneMgr::init()
 	// 현재 Scene 지정
 	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::TOOL];
 	m_pCurScene->Enter();
-
 }
 
 void CSceneMgr::update()

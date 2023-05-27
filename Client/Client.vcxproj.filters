@@ -98,6 +98,21 @@
     <Filter Include="Engine\03. Manager\08. Camera">
       <UniqueIdentifier>{2a4d3cc6-c2f7-48ec-a179-c5d3a5118194}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\09. UIMgr">
+      <UniqueIdentifier>{d515554a-4fa1-49f1-adb8-5bcc9748de4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\05. UI">
+      <UniqueIdentifier>{4df35bde-301c-498a-abbd-c72f0412f177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\05. UI\PanelUI">
+      <UniqueIdentifier>{e857449a-efc8-49d3-a9f5-4d245f9a8d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\05. UI\BtnUI">
+      <UniqueIdentifier>{c98df0e4-2661-4774-92c5-1d089e60124d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\04. Tile">
+      <UniqueIdentifier>{200d0490-8c63-4831-8e0e-3b8a62121755}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -190,6 +205,24 @@
     </ClInclude>
     <ClInclude Include="CCamera.h">
       <Filter>Engine\03. Manager\08. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CUIMgr.h">
+      <Filter>Engine\03. Manager\09. UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>Engine\04. Object\05. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CTile.h">
+      <Filter>Engine\04. Object\04. Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="CPanelUI.h">
+      <Filter>Engine\04. Object\05. UI\PanelUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CBtnUI.h">
+      <Filter>Engine\04. Object\05. UI\BtnUI</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>Engine\01. Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +317,21 @@
     </ClCompile>
     <ClCompile Include="CCamera.cpp">
       <Filter>Engine\03. Manager\08. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIMgr.cpp">
+      <Filter>Engine\03. Manager\09. UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>Engine\04. Object\05. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CTile.cpp">
+      <Filter>Engine\04. Object\04. Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="CPanelUI.cpp">
+      <Filter>Engine\04. Object\05. UI\PanelUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CBtnUI.cpp">
+      <Filter>Engine\04. Object\05. UI\BtnUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

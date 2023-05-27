@@ -8,8 +8,17 @@ class CCamera
 private:
 	Vec2		m_vLookAt;		// 카메라 보는 위치
 	Vec2		m_vPrevLookAt;	// 카메라가 보는 이전 프레임 위치
+	Vec2		m_vCurLookAt;	// 카메라가 보는 현재 프레임 위치
+
 	CObject*	m_pTargetObj;	// 카메라 타겟 오브젝트
 	Vec2		m_vDiff;		// 화면 중앙 좌표와 카메라 보는 위치 값의 차이
+
+	float		m_fTime;
+	float		m_fAccTime;
+	float		m_fSpeed;
+
+private:
+	void calDiff();
 
 public:
 	void setLookAt(Vec2 _vLook) { m_vLookAt = _vLook; }
@@ -19,7 +28,4 @@ public:
 
 public:
 	void update();
-
-private:
-	Vec2 calDiff();
 };

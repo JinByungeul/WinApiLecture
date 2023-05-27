@@ -1,5 +1,4 @@
-﻿
-#include "pch.h"
+﻿#include "global.h"
 #include "framework.h"
 #include "Client.h"
 
@@ -18,6 +17,7 @@ ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    TileCountProc(HWND, UINT, WPARAM, LPARAM);  // 타일 카운트 대화상자 처리함수
 
 // 변수 종류
 // 지역
@@ -165,26 +165,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-#include <vector>
-
-using std::vector;
-
-struct tObjInfo
-{
-    POINT g_ptObjPos;
-    POINT g_ptObjScale;
-};
-
-vector<tObjInfo> g_vecInfo;
-
-// 좌 상단
-POINT g_ptLT;
-
-// 우 하단
-POINT g_ptRB;
-
-bool blbtnDown = false;
-
 //
 //  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -207,6 +187,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                break;
+
+            case IDM_TILE:
+            {
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_TILECOUNT), hWnd, TileCountProc);
+            }
                 break;
 
             case IDM_EXIT:

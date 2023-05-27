@@ -1,5 +1,7 @@
 #pragma once
 
+#include "global.h"
+
 #include "CCamera.h"
 
 class CCollider;
@@ -47,7 +49,7 @@ private:
 
 public:
 	virtual void update() = 0;			// 순수가상함수
-	virtual void finalUpdate() final;	// 부모함수가 호출되도록...재정의 방지(final)
+	virtual void finalUpdate();	// 부모함수가 호출되도록...재정의 방지(final)
 	virtual void render(HDC _dc);		// 가상함수
 
 	void renderComponent(HDC _dc);		// 컴포넌트 그리기

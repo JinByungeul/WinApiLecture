@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CScene_Start.h"
 
 #include "CObject.h"
@@ -66,6 +65,7 @@ void CScene_Start::Enter()
 
 	for (size_t i = 0; i < iMonCount; ++i)
 	{
+		// Monster 추가
 		pMonsterObj = new CMonster;
 		pMonsterObj->setName(L"Monster");
 		pMonsterObj->SetPos(Vec2((fMoveDist + fObjScale / 2.f) + (float)i * fTerm, 50.f));
@@ -75,6 +75,9 @@ void CScene_Start::Enter()
 		pMonsterObj->SetScale(Vec2(fObjScale, fObjScale));
 		AddObject(pMonsterObj, GROUP_TYPE::MONSTER);
 	}
+
+	// 타일 로딩
+	//loadTile(L"Tile\\Start.tile");
 
 	// 충돌 지정
 	// Player 그룹과 Monster 그룹 간의 충돌 체크

@@ -5,6 +5,9 @@
 #include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CAnimator.cpp"
 
 
+#include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CBtnUI.cpp"
+
+
 #include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CCamera.cpp"
 
 
@@ -24,16 +27,4 @@
 
 
 #include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CMissile.cpp"
-
-
-#include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CMonster.cpp"
-
-
-#include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CObject.cpp"
-
-
-#include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CPathMgr.cpp"
-
-
-#include "F:\jin_source\work_win32api\WinProj\WinApiLecture\Client\CPlayer.cpp"
 

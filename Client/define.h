@@ -28,15 +28,20 @@
 
 #define PI 3.1415926535f
 
+// 타일 크기
+#define TILE_SIZE 64
+
 // Scene의 그룹
 enum class GROUP_TYPE
 {
     DEFAUL,         // 0
-    PLAYER,         // 1
-    MONSTER,        // 2
-    PROJ_PLAYER,    // 3
-    PROJ_MONSTER,   // 4
+    TILE,
+    PLAYER,
+    MONSTER,
+    PROJ_PLAYER,
+    PROJ_MONSTER,
 
+    UI  = 31,
     END = 32,
 };
 

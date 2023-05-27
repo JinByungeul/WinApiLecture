@@ -6,13 +6,32 @@ struct Vec2
 	float x;
 	float y;
 
-private:
+public:
+	bool isZero()
+	{
+		if (x == 0.f && y == 0.f)
+			return true;
+		else
+			return false;
+	}
+
 	float length()
 	{
 		return sqrt(x * x + y * y);
 	}
 
-public:
+	Vec2& normalize()
+	{
+		float fLen = length();
+
+		assert(fLen != 0.f);	// 조건 거짓이면 Stop!
+
+		x /= fLen;
+		y /= fLen;
+
+		return *this;
+	}
+
 	Vec2()
 		: x(0.f)
 		, y(0.f)
@@ -74,20 +93,6 @@ public:
 	{
 		assert(_f != 0.f);
 		return Vec2(x / _f, y / _f);
-	}
-
-public:
-
-	Vec2& normalize()
-	{
-		float fLen = length();
-
-		assert(fLen != 0.f);	// 조건 거짓이면 Stop!
-
-		x /= fLen;
-		y /= fLen;
-
-		return *this;
 	}
 
 };
