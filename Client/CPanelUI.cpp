@@ -1,6 +1,9 @@
 #include "CPanelUI.h"
 
+#include "CKeyMgr.h"
+
 CPanelUI::CPanelUI()
+	: CUI(false)
 {
 }
 
@@ -8,26 +11,33 @@ CPanelUI::~CPanelUI()
 {
 }
 
-void CPanelUI::update()
-{
-}
-
-void CPanelUI::render(HDC _dc)
-{
-}
+//void CPanelUI::update()
+//{
+//}
+//
+//void CPanelUI::render(HDC _dc)
+//{
+//}
 
 void CPanelUI::mouseOn()
 {
+	if (isLBtnDown())
+	{
+		Vec2 vDiff = MOUSE_POS - m_vDragStart;
+
+		Vec2 vCurPos = GetPos();
+		vCurPos += vDiff;
+		SetPos(vCurPos);
+
+		m_vDragStart = MOUSE_POS;
+	}
 }
 
-void CPanelUI::mouseLDown()
+void CPanelUI::mouseLBtnDown()
 {
+	m_vDragStart = MOUSE_POS;
 }
 
-void CPanelUI::mouseLUp()
-{
-}
-
-void CPanelUI::mouseClicked()
+void CPanelUI::mouseLBtnUp()
 {
 }

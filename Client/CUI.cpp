@@ -1,8 +1,26 @@
 #include "CUI.h"
 
-CUI::CUI()
+#include "CCamera.h"
+#include "CKeyMgr.h"
+#include "SelectGDI.h"
+
+CUI::CUI(bool _bCamAff)
 	: m_pParentUI(nullptr)
+	, m_bCamAffected(_bCamAff)
+	, m_bMouseOn(false)
 {
+}
+
+CUI::CUI(const CUI& _origin)	// 깊은 복사생성자
+	: m_pParentUI(nullptr)
+	, m_bCamAffected(_origin.m_bCamAffected)
+	, m_bMouseOn(false)
+	, m_bLBtnDown(false)
+{
+	for (size_t i = 0; i < _origin.m_vecChildUI.size(); ++i)
+	{
+		addChild(_origin.m_vecChildUI[i]->clone());
+	}
 }
 
 CUI::~CUI()
@@ -31,6 +49,14 @@ void CUI::finalUpdate()
 		m_vFinalPos += vParentPos;
 	}
 
+	// UI Mouse 체크
+	checkMouseOn();
+
+	//if (KEY_AWAY(KEY::LBTN))
+	//{
+	//	m_bMouseOn = false;
+	//}
+
 	finalUpdateChild();
 }
 
@@ -39,6 +65,27 @@ void CUI::updateChild()
 	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
 	{
 		m_vecChildUI[i]->update();
+	}
+}
+
+void CUI::checkMouseOn()
+{
+	Vec2 vMousePos = MOUSE_POS;
+	Vec2 vScale = GetScale();
+
+	if (m_bCamAffected)
+	{
+		vMousePos = CCamera::GetInst()->getRealPos(vMousePos);
+	}
+
+	if (m_vFinalPos.x <= vMousePos.x && vMousePos.x <= m_vFinalPos.x + vScale.x
+		&& m_vFinalPos.y <= vMousePos.y && vMousePos.y <= m_vFinalPos.y + vScale.y)
+	{
+		m_bMouseOn = true;
+	}
+	else
+	{
+		m_bMouseOn = false;
 	}
 }
 
@@ -61,11 +108,29 @@ void CUI::render(HDC _dc)
 	Vec2 vPos = getFinalPos();
 	Vec2 vScale = GetScale();
 
-	Rectangle(_dc
-		, int(vPos.x)
-		, int(vPos.y)
-		, int(vPos.x + vScale.x)
-		, int(vPos.y + vScale.y));
+	if (m_bCamAffected)
+	{
+		vPos = CCamera::GetInst()->getRenderPos(vPos);
+	}
+
+	if (m_bLBtnDown)
+	{
+		SelectGDI select(_dc, PEN_TYPE::GREEN);
+
+		Rectangle(_dc
+			, int(vPos.x)
+			, int(vPos.y)
+			, int(vPos.x + vScale.x)
+			, int(vPos.y + vScale.y));
+	}
+	else
+	{
+		Rectangle(_dc
+			, int(vPos.x)
+			, int(vPos.y)
+			, int(vPos.x + vScale.x)
+			, int(vPos.y + vScale.y));
+	}
 
 	// child ui render
 	renderChild(_dc);
@@ -75,14 +140,14 @@ void CUI::mouseOn()
 {
 }
 
-void CUI::mouseLDown()
+void CUI::mouseLBtnDown()
 {
 }
 
-void CUI::mouseLUp()
+void CUI::mouseLBtnUp()
 {
 }
 
-void CUI::mouseClicked()
+void CUI::mouseLBtnClicked()
 {
 }

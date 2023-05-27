@@ -8,15 +8,13 @@ private:
 
 
 public:
-    void update();
-    void render(HDC _dc);
+    //void update();
+    //void render(HDC _dc);
 
     virtual void mouseOn();
-    virtual void mouseLDown();
-    virtual void mouseLUp();
-    virtual void mouseClicked();
+    virtual void mouseLBtnDown();
+    virtual void mouseLBtnUp();
 
-    //virtual CObject* clone();
     CLONE(CBtnUI);
 
 public:

@@ -5,19 +5,19 @@ class CPanelUI :
     public CUI
 {
 private:
-
+    Vec2 m_vDragStart;
 
 public:
-    void update();
-    void render(HDC _dc);
+    //void update();
+    //void render(HDC _dc);
 
+public:
     virtual void mouseOn();
-    virtual void mouseLDown();
-    virtual void mouseLUp();
-    virtual void mouseClicked();
+    virtual void mouseLBtnDown();
+    virtual void mouseLBtnUp();
 
-    //virtual CObject* clone();
     CLONE(CPanelUI);
+
 public:
     CPanelUI();
     ~CPanelUI();
